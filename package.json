@@ -1,0 +1,15 @@
+{
+  "name": "@tailsman/api-react-hooks",
+  "version": "0.0.1",
+  "description": "todo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "GPL-3.0-only",
+  "dependencies": {
+    "react": "^17.0.2",
+    "@talisman/api": "0.0.1"
+  }
+}
