@@ -10,6 +10,6 @@
   "license": "GPL-3.0-only",
   "dependencies": {
     "react": "^17.0.2",
-    "@talisman/api": "0.0.1"
+    
   }
 }
