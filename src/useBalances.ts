@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import Talisman from '../api'
+import Talisman from '../../api'
 
 const useBalances = () => {
   const [addresses, setAddresses] = useState([])
