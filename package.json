@@ -2,9 +2,14 @@
   "name": "@tailsman/api-react-hooks",
   "version": "0.0.1",
   "description": "todo",
-  "main": "index.js",
+  "types": "dist/types",
+  "browser": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "prepublishOnly": "yarn build"
   },
   "author": "",
   "license": "GPL-3.0-only",
@@ -12,6 +17,7 @@
     "react": ">=17"
   },
   "devDependencies": {
-    "react": "^17.0.2"
+    "react": "^17.0.2",
+    "typescript": "^4.3.5"
   }
 }
