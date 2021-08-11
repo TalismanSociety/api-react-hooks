@@ -1,6 +1,6 @@
 import { useCallback, useRef, useState } from 'react'
 
-import Talisman from '../../api'
+import Talisman from '@talismn/api'
 
 const useBalances = () => {
   const [addresses, setAddresses] = useState<string[]>([])

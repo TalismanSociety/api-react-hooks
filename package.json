@@ -16,6 +16,9 @@
   "peerDependencies": {
     "react": ">=17"
   },
+  "dependencies": {
+    "@talismn/api": "^0.0.2"
+  },
   "devDependencies": {
     "react": "^17.0.2",
     "typescript": "^4.3.5"
