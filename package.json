@@ -1,7 +1,7 @@
 {
-  "name": "@tailsman/api-react-hooks",
+  "name": "@talismn/api-react-hooks",
   "version": "0.0.1",
-  "description": "todo",
+  "description": "A set of react hooks to use the @talismn/api.",
   "types": "dist/types",
   "browser": "./dist/index.js",
   "exports": "./dist/index.js",
@@ -11,7 +11,7 @@
     "build": "tsc",
     "prepublishOnly": "yarn build"
   },
-  "author": "",
+  "author": "Talisman",
   "license": "GPL-3.0-only",
   "peerDependencies": {
     "react": ">=17"
@@ -22,5 +22,18 @@
   "devDependencies": {
     "react": "^17.0.2",
     "typescript": "^4.3.5"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalismanSociety/api-react-hooks.git"
+  },
+  "keywords": [
+    "talisman",
+    "polkadot",
+    "substrate"
+  ],
+  "bugs": {
+    "url": "https://github.com/TalismanSociety/api-react-hooks/issues"
+  },
+  "homepage": "https://github.com/TalismanSociety/api-react-hooks#readme"
 }
