@@ -1,14 +1,20 @@
-import { useState } from 'react'
+import { useCallback, useRef, useState } from 'react'
+
 import Talisman from '../../api'
 
 const useBalances = () => {
-  const [addresses, setAddresses] = useState([])
+  const [addresses, setAddresses] = useState<string[]>([])
   const [chains, setChains] = useState([])
   const [balances, setBalances] = useState([])
   const [status, setStatus] = useState('INITIALIZED')
-  const [message, setMessage] = useState()
+  const [message, setMessage] = useState<string | null>(null)
 
-  const fetch = () => {
+  const _fetchStateRef = useRef({ chains, addresses, status })
+  _fetchStateRef.current = { chains, addresses, status }
+
+  const fetch = useCallback(() => {
+    const { chains, addresses, status } = _fetchStateRef.current
+
     if(status === 'PROCESSING') return
     setBalances([])
 
@@ -18,7 +24,7 @@ const useBalances = () => {
       return
     }
 
-    if(addresses === ''){
+    if (addresses.length < 1) {
       setMessage('no address selected')
       setStatus('ERROR')
       return
@@ -37,7 +43,7 @@ const useBalances = () => {
         setMessage(e.message)
         setStatus('ERROR')
       })
-  }
+  }, [])
 
   return {
     balances,
