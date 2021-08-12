@@ -517,7 +517,7 @@
     "@types/websocket" "^1.0.4"
     websocket "^1.0.34"
 
-"@talismn/api@^0.0.5":
+"@talismn/api@~0":
   version "0.0.5"
   resolved "https://registry.yarnpkg.com/@talismn/api/-/api-0.0.5.tgz#a3fba18f942471db74ef0fe7e1d2ae8b886d1573"
   integrity sha512-ID6ajjr2/+HHoRLoOXOiB7KmuEZ6KKwmxCGaiqLSpQg/WVfKPJSkCEXwwl4OXCStCuNG2D3n8hMPNJYG2u0lYQ==
