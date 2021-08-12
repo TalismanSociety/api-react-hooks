@@ -24,6 +24,9 @@
     "react": "^17.0.2",
     "typescript": "^4.3.5"
   },
+  "files": [
+    "dist/*"
+  ],
   "repository": {
     "type": "git",
     "url": "git+https://github.com/TalismanSociety/api-react-hooks.git"
