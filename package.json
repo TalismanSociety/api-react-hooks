@@ -1,14 +1,27 @@
 {
-  "name": "@tailsman/api-react-hooks",
+  "name": "@talismn/api-react-hooks",
   "version": "0.0.1",
   "description": "todo",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "Talisman",
   "license": "GPL-3.0-only",
   "dependencies": {
     "react": "^17.0.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TalismanSociety/api-react-hooks.git"
+  },
+  "keywords": [
+    "talisman",
+    "react",
+    "hooks"
+  ],
+  "bugs": {
+    "url": "https://github.com/TalismanSociety/api-react-hooks/issues"
+  },
+  "homepage": "https://github.com/TalismanSociety/api-react-hooks#readme"
 }
