@@ -17,8 +17,7 @@
     "react": ">=17"
   },
   "dependencies": {
-    "@talismn/api": "^0.0.5",
-    "react": "^17.0.2"
+    "@talismn/api": "^0.0.5"
   },
   "devDependencies": {
     "react": "^17.0.2",
