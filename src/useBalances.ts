@@ -1,60 +1,62 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 
 import Talisman from '@talismn/api'
 
-const useBalances = () => {
-  const [addresses, setAddresses] = useState<string[]>([])
-  const [chains, setChains] = useState([])
+export const enum Status {
+  INITIALIZED = 'INITIALIZED',
+  PROCESSING = 'PROCESSING',
+  READY = 'READY',
+  ERROR = 'ERROR',
+}
+
+export default function useBalances(addresses: string | string[] = [], chains: string | string[] = []) {
   const [balances, setBalances] = useState([])
-  const [status, setStatus] = useState('INITIALIZED')
+  const [status, setStatus] = useState(Status.INITIALIZED)
   const [message, setMessage] = useState<string | null>(null)
 
-  const _fetchStateRef = useRef({ chains, addresses, status })
-  _fetchStateRef.current = { chains, addresses, status }
+  const statusRef = useRef(status)
+  statusRef.current = status
 
-  const fetch = useCallback(() => {
-    const { chains, addresses, status } = _fetchStateRef.current
+  const fetchBalances = useCallback((addresses: string[], chains: string[]) => {
+    const status = statusRef.current
+    if (status === Status.PROCESSING) return
 
-    if(status === 'PROCESSING') return
-    setBalances([])
-
-    if(!chains.length){
+    if (!chains.length) {
       setMessage('no chain selected')
-      setStatus('ERROR')
+      setStatus(Status.ERROR)
       return
     }
 
     if (addresses.length < 1) {
       setMessage('no address selected')
-      setStatus('ERROR')
+      setStatus(Status.ERROR)
       return
     }
 
     setMessage(null)
-    setStatus('PROCESSING')
-    
-    Talisman.connect({chains})
+    setStatus(Status.PROCESSING)
+
+    Talisman.connect({ chains })
       .then(async cf => {
         const _balances = await cf.balance(addresses)
         setBalances(_balances)
-        setStatus('READY')
+        setStatus(Status.READY)
       })
       .catch(e => {
         setMessage(e.message)
-        setStatus('ERROR')
+        setStatus(Status.ERROR)
       })
   }, [])
 
-  return {
-    balances,
-    addresses,
-    chains,
-    setAddresses,
-    setChains,
-    status,
-    message,
-    fetch
-  }
-}
+  useEffect(() => {
+    if (!addresses) return
+    if (Array.isArray(addresses) && addresses.filter(Boolean).length < 1) return
 
-export default useBalances
+    if (!chains) return
+    if (Array.isArray(chains) && chains.filter(Boolean).length < 1) return
+
+    fetchBalances(Array.isArray(addresses) ? addresses : [addresses], Array.isArray(chains) ? chains : [chains])
+  }, [addresses, chains, fetchBalances])
+
+  return { balances, status, message, refetch: fetchBalances }
+}
