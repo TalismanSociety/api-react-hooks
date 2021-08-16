@@ -19,7 +19,8 @@
     "react": ">=17"
   },
   "dependencies": {
-    "@talismn/api": "~0"
+    "@talismn/api": "~0",
+    "@talismn/chaindata-js": "~0"
   },
   "devDependencies": {
     "esbuild-node-tsc": "^1.6.1",
