@@ -9,7 +9,11 @@ export const enum Status {
   ERROR = 'ERROR',
 }
 
-export default function useBalances(addresses: string | string[] = [], chains: string | string[] = []) {
+export default function useBalances(
+  addresses: string | string[] = [],
+  chains: string | string[] = [],
+  rpcs?: { [key: string]: string[] }
+) {
   const [balances, setBalances] = useState([])
   const [status, setStatus] = useState(Status.INITIALIZED)
   const [message, setMessage] = useState<string | null>(null)
@@ -36,7 +40,7 @@ export default function useBalances(addresses: string | string[] = [], chains: s
     setMessage(null)
     setStatus(Status.PROCESSING)
 
-    Talisman.connect({ chains })
+    Talisman.connect({ chains, rpcs })
       .then(async cf => {
         const _balances = await cf.balance(addresses)
         setBalances(_balances)
