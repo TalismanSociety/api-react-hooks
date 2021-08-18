@@ -543,9 +543,9 @@
     defer-to-connect "^1.0.1"
 
 "@talismn/api@~0":
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/@talismn/api/-/api-0.0.8.tgz#edaa16f18db48f1a18ccef09300f0130963e5639"
-  integrity sha512-El1yWvXGsGMqcsb3LaAEomZvyGUwTsx+qDM6U4weJMz5vjWY4ejfbT6+SxgvamX9cSprzsruXT8QugAxIQOzMQ==
+  version "0.0.9"
+  resolved "https://registry.yarnpkg.com/@talismn/api/-/api-0.0.9.tgz#cdab8ec691c2c9d03e8f21eaf2da2246f18fed1d"
+  integrity sha512-l6Y/QnoHr3BIpdBdvjBwVz9Oy2nrM97H5Iqk1A0DhInAlw1a2DNF8N68ZmsLnOCJs49xi0r+p74KP4rWPeVaUQ==
   dependencies:
     "@acala-network/api" "^2.0.1"
     "@polkadot/api" "^5.4.1"
