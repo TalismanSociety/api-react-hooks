@@ -1,21 +1,17 @@
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import Talisman from '@talismn/api'
+import type { Balance } from '@talismn/api'
 
-export const enum Status {
-  INITIALIZED = 'INITIALIZED',
-  PROCESSING = 'PROCESSING',
-  READY = 'READY',
-  ERROR = 'ERROR',
-}
+export type Status = 'INITIALIZED' | 'PROCESSING' | 'READY' | 'ERROR'
 
 export default function useBalances(
   addresses: string | string[] = [],
   chains: string | string[] = [],
   rpcs?: { [key: string]: string[] }
 ) {
-  const [balances, setBalances] = useState([])
-  const [status, setStatus] = useState(Status.INITIALIZED)
+  const [balances, setBalances] = useState<Array<Balance | null>>([])
+  const [status, setStatus] = useState<Status>('INITIALIZED')
   const [message, setMessage] = useState<string | null>(null)
 
   const statusRef = useRef(status)
@@ -23,32 +19,32 @@ export default function useBalances(
 
   const fetchBalances = useCallback((addresses: string[], chains: string[]) => {
     const status = statusRef.current
-    if (status === Status.PROCESSING) return
+    if (status === 'PROCESSING') return
 
     if (!chains.length) {
       setMessage('no chain selected')
-      setStatus(Status.ERROR)
+      setStatus('ERROR')
       return
     }
 
     if (addresses.length < 1) {
       setMessage('no address selected')
-      setStatus(Status.ERROR)
+      setStatus('ERROR')
       return
     }
 
     setMessage(null)
-    setStatus(Status.PROCESSING)
+    setStatus('PROCESSING')
 
-    Talisman.connect({ chains, rpcs })
-      .then(async cf => {
-        const _balances = await cf.balance(addresses)
-        setBalances(_balances)
-        setStatus(Status.READY)
+    Talisman.connect({ type: 'TALISMANCONNECT', chains, rpcs })
+      .then(async chainFactory => {
+        const balances = await chainFactory.balance(addresses)
+        setBalances(balances)
+        setStatus('READY')
       })
-      .catch(e => {
-        setMessage(e.message)
-        setStatus(Status.ERROR)
+      .catch(error => {
+        setMessage(error.message)
+        setStatus('ERROR')
       })
   }, [])
 

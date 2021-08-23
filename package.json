@@ -23,6 +23,7 @@
     "@talismn/chaindata-js": "~0"
   },
   "devDependencies": {
+    "@types/react": "^17.0.2",
     "esbuild-node-tsc": "^1.6.1",
     "nodemon": "^2.0.12",
     "react": "^17.0.2",
