@@ -4,8 +4,9 @@
 - `useBalances`
 - `useChains`
 - `useChain`
-##Usage
-####useBalances
+
+## Usage
+#### useBalances
 Provides current balances for the addresses and chains provided.
 ```
 import { useBalances } from '@talismn/api-react-hooks'
@@ -33,7 +34,7 @@ Returns an array of `Balance` objects like:
 }]
 ```
 
-###useChains
+### useChains
 
 Discover which chains are available.
 
@@ -52,7 +53,7 @@ The returned object contains key:value pairs of all available chain ids and name
 ```
 
 
-###useChain
+### useChain
 
 Fetch a chain by ID and load all relevant information. In this example, Polkadot (id: 0).
 
