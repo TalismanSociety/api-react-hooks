@@ -543,9 +543,9 @@
     defer-to-connect "^1.0.1"
 
 "@talismn/api@~0":
-  version "0.0.10"
-  resolved "https://registry.yarnpkg.com/@talismn/api/-/api-0.0.10.tgz#c19ead2c355dbc649586cf25cf9d7641b40f4cda"
-  integrity sha512-ybisfZmUVvd+A0TnjWd+eim6G/0bzw/dSFxpuvezTIxpO0GL+EnOZ8VOSDDT5z7j0hPafY1niOwX4yXjHCsCbg==
+  version "0.0.11"
+  resolved "https://registry.yarnpkg.com/@talismn/api/-/api-0.0.11.tgz#87d5d55ea5d063f73562150b0681d847ec855bb2"
+  integrity sha512-KRnV4DKwOHmVvIC6CW6tnpRSJb4dT0X2iEGP3JqEq+pOXIRxVKCV7CKGaGjIuEGDJVAHmjkNHHVYmRBWLDmRcQ==
   dependencies:
     "@acala-network/api" "^2.0.1"
     "@polkadot/api" "^5.4.1"
@@ -1355,9 +1355,9 @@ ed2curve@^0.3.0:
     tweetnacl "1.x.x"
 
 electron-to-chromium@^1.3.811:
-  version "1.3.814"
-  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.814.tgz#418fad80c3276a46103ca72a21a8290620d83c4a"
-  integrity sha512-0mH03cyjh6OzMlmjauGg0TLd87ErIJqWiYxMcOLKf5w6p0YEOl7DJAj7BDlXEFmCguY5CQaKVOiMjAMODO2XDw==
+  version "1.3.816"
+  resolved "https://registry.yarnpkg.com/electron-to-chromium/-/electron-to-chromium-1.3.816.tgz#ab6488b126de92670a6459fe3e746050e0c6276f"
+  integrity sha512-/AvJPIJldO0NkwkfpUD7u1e4YEGRFBQpFuvl9oGCcVgWOObsZB1loxVGeVUJB9kmvfsBUUChPYdgRzx6+AKNyg==
 
 elliptic@^6.5.4:
   version "6.5.4"

@@ -1,62 +1,41 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-
 import Talisman from '@talismn/api'
 import type { Balance } from '@talismn/api'
+import { useEffect, useMemo, useState } from 'react'
 
 export type Status = 'INITIALIZED' | 'PROCESSING' | 'READY' | 'ERROR'
 
 export default function useBalances(
-  addresses: string | string[] = [],
-  chains: string | string[] = [],
+  _addresses: string[] = [],
+  chains: string[] = [],
   rpcs?: { [key: string]: string[] }
 ) {
-  const [balances, setBalances] = useState<Array<Balance | null>>([])
-  const [status, setStatus] = useState<Status>('INITIALIZED')
-  const [message, setMessage] = useState<string | null>(null)
-
-  const statusRef = useRef(status)
-  statusRef.current = status
-
-  const fetchBalances = useCallback((addresses: string[], chains: string[]) => {
-    const status = statusRef.current
-    if (status === 'PROCESSING') return
-
-    if (!chains.length) {
-      setMessage('no chain selected')
-      setStatus('ERROR')
-      return
-    }
-
-    if (addresses.length < 1) {
-      setMessage('no address selected')
-      setStatus('ERROR')
-      return
-    }
-
-    setMessage(null)
-    setStatus('PROCESSING')
-
-    Talisman.connect({ type: 'TALISMANCONNECT', chains, rpcs })
-      .then(async chainFactory => {
-        const balances = await chainFactory.balance(addresses)
-        setBalances(balances)
-        setStatus('READY')
-      })
-      .catch(error => {
-        setMessage(error.message)
-        setStatus('ERROR')
-      })
-  }, [])
-
+  // TODO: Move addresses out of useGuardian so they don't need to be memoised here
+  const [addresses, setAddresses] = useState<string[]>([])
   useEffect(() => {
-    if (!addresses) return
-    if (Array.isArray(addresses) && addresses.filter(Boolean).length < 1) return
+    setAddresses(addresses =>
+      _addresses.some((address, index) => addresses[index] !== address) ? _addresses : addresses
+    )
+  }, [_addresses])
 
-    if (!chains) return
-    if (Array.isArray(chains) && chains.filter(Boolean).length < 1) return
+  const [balancesIndexed, setBalancesIndexed] = useState<{ [key: string]: Balance | null }>({})
+  useEffect(() => {
+    if (!Array.isArray(addresses)) return
+    if (addresses.filter(Boolean).length < 1) return
 
-    fetchBalances(Array.isArray(addresses) ? addresses : [addresses], Array.isArray(chains) ? chains : [chains])
-  }, [addresses, chains, fetchBalances])
+    if (!Array.isArray(chains)) return
+    if (chains.filter(Boolean).length < 1) return
 
-  return { balances, status, message, refetch: fetchBalances }
+    const unsubscribe = Talisman.init({ type: 'TALISMANCONNECT', rpcs }).subscribeBalances(
+      chains,
+      addresses,
+      (balance, chainId, address) =>
+        setBalancesIndexed(balances => ({ ...balances, [`${chainId}_${address}`]: balance }))
+    )
+
+    return unsubscribe
+  }, [addresses, chains])
+
+  const balances = useMemo(() => Object.values(balancesIndexed).filter(Boolean), [balancesIndexed])
+
+  return { balances }
 }
