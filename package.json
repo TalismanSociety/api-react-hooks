@@ -7,6 +7,8 @@
   "exports": "./dist/index.js",
   "type": "module",
   "scripts": {
+    "prepare": "husky install",
+    "pre-commit": "lint-staged",
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "nodemon --watch src --ext js,ts --exec yarn prepublishOnly",
     "build": "esbuild-node-tsc",
@@ -25,7 +27,12 @@
   "devDependencies": {
     "@types/react": "^17.0.2",
     "esbuild-node-tsc": "^1.6.1",
+    "husky": "^6.0.0",
+    "import-sort-style-module": "^6.0.0",
+    "lint-staged": "^11.1.2",
     "nodemon": "^2.0.12",
+    "prettier": "^2.3.2",
+    "prettier-plugin-import-sort": "^0.0.7",
     "react": "^17.0.2",
     "typescript": "^4.3.5"
   },
@@ -46,5 +53,21 @@
   "bugs": {
     "url": "https://github.com/TalismanSociety/api-react-hooks/issues"
   },
-  "homepage": "https://github.com/TalismanSociety/api-react-hooks#readme"
+  "homepage": "https://github.com/TalismanSociety/api-react-hooks#readme",
+  "lint-staged": {
+    "*.{ts,tsx,js,jsx,html,css,scss}": "prettier --write"
+  },
+  "prettier": {
+    "arrowParens": "avoid",
+    "printWidth": 120,
+    "quoteProps": "consistent",
+    "semi": false,
+    "singleQuote": true
+  },
+  "importSort": {
+    ".js, .jsx, .ts, .tsx": {
+      "style": "module",
+      "parser": "typescript"
+    }
+  }
 }
