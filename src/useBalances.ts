@@ -1,14 +1,11 @@
 import Talisman from '@talismn/api'
 import type { Balance } from '@talismn/api'
+import { multiplyBigNumbers, planckToTokens } from '@talismn/util'
 import { useEffect, useMemo, useState } from 'react'
 
 export type Status = 'INITIALIZED' | 'PROCESSING' | 'READY' | 'ERROR'
 
-export default function useBalances(
-  _addresses: string[] = [],
-  chains: string[] = [],
-  rpcs?: { [key: string]: string[] }
-) {
+export function useBalances(_addresses: string[] = [], chains: string[] = [], rpcs?: { [key: string]: string[] }) {
   // TODO: Move addresses out of useGuardian so they don't need to be memoised here
   const [addresses, setAddresses] = useState<string[]>([])
   useEffect(() => {
@@ -38,4 +35,59 @@ export default function useBalances(
   const balances = useMemo(() => Object.values(balancesIndexed).filter(Boolean), [balancesIndexed])
 
   return { balances }
+}
+
+export function groupBalancesByChain(
+  chainIds: string[],
+  balances: Array<Balance | null>
+): { [key: string]: Balance[] } {
+  const byChain = Object.fromEntries(chainIds.map<[string, Balance[]]>(chainId => [chainId, []]))
+
+  balances
+    .filter((balance): balance is Balance => balance !== null)
+    .filter(balance => typeof balance.chainId === 'string')
+    .filter(balance => chainIds.includes(balance.chainId))
+    .forEach(balance => {
+      byChain[balance.chainId].push(balance)
+    })
+
+  return byChain
+}
+
+export function groupBalancesByAddress(balances: Array<Balance | null>): { [key: string]: Balance[] } {
+  const byAddress: { [key: string]: Balance[] } = {}
+
+  balances
+    .filter((balance): balance is Balance => balance !== null)
+    .filter(balance => typeof balance.address === 'string')
+    .forEach(balance => {
+      if (!byAddress[balance.address]) byAddress[balance.address] = []
+      byAddress[balance.address].push(balance)
+    })
+
+  return byAddress
+}
+
+// TODO: Move to dedicated token price lib
+
+type BalanceWithTokens = Balance & { tokens?: string }
+
+export function addTokensToBalances(balances: Balance[], tokenDecimals?: number): BalanceWithTokens[] {
+  return balances.map(balance => ({ ...balance, tokens: planckToTokens(balance.free, tokenDecimals) }))
+}
+
+type BalanceWithTokensWithPrice = BalanceWithTokens & { usd?: string }
+
+export function addPriceToTokenBalances(
+  balances: BalanceWithTokens[],
+  tokenPrice?: string
+): BalanceWithTokensWithPrice[] {
+  if (typeof tokenPrice !== 'number') return balances
+
+  return balances
+    .filter(balance => typeof balance.tokens === 'string')
+    .map(balance => ({
+      ...balance,
+      usd: multiplyBigNumbers(balance.tokens, tokenPrice),
+    }))
 }

@@ -23,7 +23,8 @@
   },
   "dependencies": {
     "@talismn/api": "~0",
-    "@talismn/chaindata-js": "~0"
+    "@talismn/chaindata-js": "~0",
+    "@talismn/util": "~0"
   },
   "devDependencies": {
     "@types/react": "^17.0.2",
