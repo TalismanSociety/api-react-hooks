@@ -3,6 +3,7 @@ import type { Balance } from '@talismn/api'
 import { multiplyBigNumbers, planckToTokens } from '@talismn/util'
 import { useEffect, useMemo, useState } from 'react'
 
+export type { Balance } from '@talismn/api'
 export type Status = 'INITIALIZED' | 'PROCESSING' | 'READY' | 'ERROR'
 
 export function useBalances(_addresses: string[] = [], chains: string[] = [], rpcs?: { [key: string]: string[] }) {
@@ -70,13 +71,13 @@ export function groupBalancesByAddress(balances: Array<Balance | null>): { [key:
 
 // TODO: Move to dedicated token price lib
 
-type BalanceWithTokens = Balance & { tokens?: string }
+export type BalanceWithTokens = Balance & { tokens?: string }
 
 export function addTokensToBalances(balances: Balance[], tokenDecimals?: number): BalanceWithTokens[] {
   return balances.map(balance => ({ ...balance, tokens: planckToTokens(balance.free, tokenDecimals) }))
 }
 
-type BalanceWithTokensWithPrice = BalanceWithTokens & { usd?: string }
+export type BalanceWithTokensWithPrice = BalanceWithTokens & { usd?: string }
 
 export function addPriceToTokenBalances(
   balances: BalanceWithTokens[],
