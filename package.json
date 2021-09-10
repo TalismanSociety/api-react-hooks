@@ -56,6 +56,7 @@
     "url": "https://github.com/TalismanSociety/api-react-hooks/issues"
   },
   "homepage": "https://github.com/TalismanSociety/api-react-hooks#readme",
+  "packageManager": "yarn@3.0.1",
   "lint-staged": {
     "*.{ts,tsx,js,jsx,html,css,scss}": "prettier --write"
   },
