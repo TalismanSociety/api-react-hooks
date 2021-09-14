@@ -73,8 +73,13 @@ export function groupBalancesByAddress(balances: Array<Balance | null>): { [key:
 
 export type BalanceWithTokens = Balance & { tokens?: string }
 
-export function addTokensToBalances(balances: Balance[], tokenDecimals?: number): BalanceWithTokens[] {
-  return balances.map(balance => ({ ...balance, tokens: planckToTokens(balance.free, tokenDecimals) }))
+export function addTokensToBalances(
+  balances: Array<Balance | null>,
+  tokenDecimals?: number
+): Array<BalanceWithTokens | null> {
+  return balances.map(balance =>
+    balance === null ? null : { ...balance, tokens: planckToTokens(balance.free, tokenDecimals) }
+  )
 }
 
 export type BalanceWithTokensWithPrice = BalanceWithTokens & { usd?: string }
