@@ -85,15 +85,17 @@ export function addTokensToBalances(
 export type BalanceWithTokensWithPrice = BalanceWithTokens & { usd?: string }
 
 export function addPriceToTokenBalances(
-  balances: BalanceWithTokens[],
+  balances: Array<BalanceWithTokens | null>,
   tokenPrice?: string
-): BalanceWithTokensWithPrice[] {
+): Array<BalanceWithTokensWithPrice | null> {
   if (typeof tokenPrice !== 'number') return balances
 
-  return balances
-    .filter(balance => typeof balance.tokens === 'string')
-    .map(balance => ({
-      ...balance,
-      usd: multiplyBigNumbers(balance.tokens, tokenPrice),
-    }))
+  return balances.map(balance =>
+    balance === null
+      ? null
+      : {
+          ...balance,
+          usd: multiplyBigNumbers(balance.tokens, tokenPrice),
+        }
+  )
 }
