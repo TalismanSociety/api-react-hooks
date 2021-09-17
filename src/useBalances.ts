@@ -38,14 +38,14 @@ export function useBalances(_addresses: string[] = [], chains: string[] = [], rp
   return { balances }
 }
 
-export function groupBalancesByChain(
+export function groupBalancesByChain<B extends Balance>(
   chainIds: string[],
-  balances: Array<Balance | null>
-): { [key: string]: Balance[] } {
-  const byChain = Object.fromEntries(chainIds.map<[string, Balance[]]>(chainId => [chainId, []]))
+  balances: Array<B | null>
+): { [key: string]: B[] } {
+  const byChain = Object.fromEntries(chainIds.map<[string, B[]]>(chainId => [chainId, []]))
 
   balances
-    .filter((balance): balance is Balance => balance !== null)
+    .filter((balance): balance is B => balance !== null)
     .filter(balance => typeof balance.chainId === 'string')
     .filter(balance => chainIds.includes(balance.chainId))
     .forEach(balance => {
@@ -55,11 +55,11 @@ export function groupBalancesByChain(
   return byChain
 }
 
-export function groupBalancesByAddress(balances: Array<Balance | null>): { [key: string]: Balance[] } {
-  const byAddress: { [key: string]: Balance[] } = {}
+export function groupBalancesByAddress<B extends Balance>(balances: Array<B | null>): { [key: string]: B[] } {
+  const byAddress: { [key: string]: B[] } = {}
 
   balances
-    .filter((balance): balance is Balance => balance !== null)
+    .filter((balance): balance is B => balance !== null)
     .filter(balance => typeof balance.address === 'string')
     .forEach(balance => {
       if (!byAddress[balance.address]) byAddress[balance.address] = []
