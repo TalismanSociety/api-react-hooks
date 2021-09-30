@@ -366,6 +366,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@polkadot/extension-inject@npm:^0.39.3":
+  version: 0.39.3
+  resolution: "@polkadot/extension-inject@npm:0.39.3"
+  dependencies:
+    "@babel/runtime": ^7.15.3
+  peerDependencies:
+    "@polkadot/api": "*"
+  checksum: 9ac87aa2a9a54437da4844f40efa4753b876c02135c1d0ded9bda06029e37a6f2ddf8f0e6c2bc7ed95094ee2e7a2bd05f1648255eff02b384a96c043293935d3
+  languageName: node
+  linkType: hard
+
 "@polkadot/keyring@npm:^7.2.1, @polkadot/keyring@npm:^7.3.1":
   version: 7.3.1
   resolution: "@polkadot/keyring@npm:7.3.1"
@@ -653,8 +664,8 @@ __metadata:
   linkType: soft
 
 "@talismn/api@npm:~0":
-  version: 0.0.16
-  resolution: "@talismn/api@npm:0.0.16"
+  version: 0.0.17
+  resolution: "@talismn/api@npm:0.0.17"
   dependencies:
     "@polkadot/api": ^5.4.1
     "@polkadot/keyring": ^7.2.1
@@ -669,7 +680,7 @@ __metadata:
     lodash: ^4.17.21
     p-map: ^4.0.0
     uuid: ^8.3.2
-  checksum: 953145e91e20ee98987a27eb660a171c450adcbb5e74afe2a7f3730c14ad71a1dd408b27402c58e924b78d70ac721fa57b749b754dc493ff313e4b75924fff43
+  checksum: da04abfd763384519d474cbde50634fa9dfc1b79110fed14b78af1a8825c8b1cd7de2a78c0598a0a07754ac9e64441e2d1a68d42ae6c6cfe47b3db2dab838720
   languageName: node
   linkType: hard
 
@@ -681,13 +692,15 @@ __metadata:
   linkType: hard
 
 "@talismn/util@npm:~0":
-  version: 0.0.2
-  resolution: "@talismn/util@npm:0.0.2"
+  version: 0.0.8
+  resolution: "@talismn/util@npm:0.0.8"
   dependencies:
+    "@polkadot/extension-inject": ^0.39.3
+    "@polkadot/networks": ^7.3.1
     bignumber.js: ^9.0.1
   peerDependencies:
     react: ">=17"
-  checksum: 09af69ad1e012572c3e6a903d1bb7d1ee56a0d90610706ca1898e3919ea43081b373f51d5fc79edeb2586c5fe1b23a64b93c4e0fcae6adc0883e8ae2bfa1fecc
+  checksum: 68f6a6553a81d4e326164646500f172f2c70b640e0242387de797ee00b81be564764038fa9a512220fbc789754ea048fd018b641f4a9f4897f3396c4fff573db
   languageName: node
   linkType: hard
 
