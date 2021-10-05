@@ -664,8 +664,8 @@ __metadata:
   linkType: soft
 
 "@talismn/api@npm:~0":
-  version: 0.0.17
-  resolution: "@talismn/api@npm:0.0.17"
+  version: 0.0.18
+  resolution: "@talismn/api@npm:0.0.18"
   dependencies:
     "@polkadot/api": ^5.4.1
     "@polkadot/keyring": ^7.2.1
@@ -680,7 +680,7 @@ __metadata:
     lodash: ^4.17.21
     p-map: ^4.0.0
     uuid: ^8.3.2
-  checksum: da04abfd763384519d474cbde50634fa9dfc1b79110fed14b78af1a8825c8b1cd7de2a78c0598a0a07754ac9e64441e2d1a68d42ae6c6cfe47b3db2dab838720
+  checksum: 70683b29ff498aa2583452bc76da5d5293f3515cd1a85969242b16af5fd985f9ee210e08f78e47c30b10004592d183e9e5f8edf31bf176eebd9c8fefbc6a3a6c
   languageName: node
   linkType: hard
 
@@ -692,15 +692,15 @@ __metadata:
   linkType: hard
 
 "@talismn/util@npm:~0":
-  version: 0.0.8
-  resolution: "@talismn/util@npm:0.0.8"
+  version: 0.0.9
+  resolution: "@talismn/util@npm:0.0.9"
   dependencies:
     "@polkadot/extension-inject": ^0.39.3
     "@polkadot/networks": ^7.3.1
     bignumber.js: ^9.0.1
   peerDependencies:
     react: ">=17"
-  checksum: 68f6a6553a81d4e326164646500f172f2c70b640e0242387de797ee00b81be564764038fa9a512220fbc789754ea048fd018b641f4a9f4897f3396c4fff573db
+  checksum: 660c5b64ef4be7111a786d238ad9ef43d9b8cdd93ceb8a3d3d1dec6c3e08edb39171c11a96108bac2a4aa85b1aed81c129d6cd2cf817764a4df3b0fa9b6e746e
   languageName: node
   linkType: hard
 
