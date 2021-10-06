@@ -1,10 +1,9 @@
+// TODO: Import chaindata via @talismn/api instead of going directly to @talismn/chaindata-js
+import chaindata, { Chain } from '@talismn/chaindata-js'
 import { useEffect, useState } from 'react'
 
-// TODO: Import chaindata via @talismn/api instead of going directly to @talismn/chaindata-js
-import chaindata from '@talismn/chaindata-js'
-
 export function useChains() {
-  const [chainData, setChainData] = useState([])
+  const [chainData, setChainData] = useState<{ [key: string]: string } | null>(null)
   useEffect(() => {
     ;(async () => setChainData(await chaindata.chains()))()
   }, [])
@@ -13,7 +12,7 @@ export function useChains() {
 }
 
 export function useChain(id: string) {
-  const [chain, setChain] = useState<any>({})
+  const [chain, setChain] = useState<Chain | any>({})
   useEffect(() => {
     ;(async () => setChain(await chaindata.chain(id)))()
   }, [id])
