@@ -612,8 +612,8 @@ __metadata:
   linkType: soft
 
 "@talismn/api@npm:~0":
-  version: 0.0.19
-  resolution: "@talismn/api@npm:0.0.19"
+  version: 0.0.20
+  resolution: "@talismn/api@npm:0.0.20"
   dependencies:
     "@talismn/chaindata-js": ~0
     "@talismn/util": ~0
@@ -629,7 +629,7 @@ __metadata:
     "@polkadot/types": "*"
     "@polkadot/util-crypto": "*"
     react: "*"
-  checksum: bdc63808eebbc7dc416078624a49be2bafd439a1d79b60271529acaa0fb8360d670449e17cea51373979055f4338c4d2adc5cd1ef9f698c96fb68026f6d479c9
+  checksum: 309b37d2de011bb1b29d77888db85a4e6f0b6118e1108afcdc43b79e04b6e4fb896dd23e98b05510fb8f2421da6ad33e9752fcfceddd906b8723f5a5a9bfc217
   languageName: node
   linkType: hard
 
