@@ -1,6 +1,6 @@
 {
   "name": "@talismn/api-react-hooks",
-  "version": "0.0.21",
+  "version": "0.0.22",
   "description": "A set of react hooks to use the @talismn/api.",
   "main": "./src/index.ts",
   "types": "./dist/index.d.ts",
