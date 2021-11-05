@@ -11,9 +11,10 @@ export function useChains() {
   return chainData
 }
 
-export function useChain(id: string) {
+export function useChain(id?: string) {
   const [chain, setChain] = useState<Chain | any>({})
   useEffect(() => {
+    if (id === undefined) return setChain({})
     ;(async () => setChain(await chaindata.chain(id)))()
   }, [id])
 
