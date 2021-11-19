@@ -23,7 +23,7 @@ export function useBalances(_addresses: string[] = [], chains: string[] = [], rp
     if (!Array.isArray(chains)) return
     if (chains.filter(Boolean).length < 1) return
 
-    const unsubscribe = Talisman.init({ type: 'TALISMANCONNECT', rpcs }).subscribeBalances(
+    const unsubscribe = Talisman.init({ type: 'WSPROVIDER', rpcs }).subscribeBalances(
       chains,
       addresses,
       (balance, chainId, address) =>
